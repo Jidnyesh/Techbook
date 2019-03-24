@@ -87,7 +87,7 @@
             color: black;
         }
         input[type="email"]{
-            width: 80%;
+            width: 85%;
             height: 35px;
             margin-top: 10px;
             border: none;
@@ -198,7 +198,7 @@
 <body>
     <nav class="navbar navbar-inverse" style="position:absolute;z-index:200;padding-bottom:5px;padding-top:5px;background-color:transparent;border: none;width: 100%;">
         <div class="container-fluid">
-            <a href="#"><h2 class="navbar-header" style="letter-spacing:1px;color:linear-gradient(to right,#43cbff,#9708cc);font-weight: bold;">Start-X <small style="font-size:13px;letter-spacing: 1px;color:linear-gradient(to right,#43cbff,#9708cc);"><i style="color:linear-gradient(to right,#43cbff,#9708cc);">your empire builder</i></small></h2></a>
+            <a href="#"><h2 class="navbar-header" style="letter-spacing:1px;color:linear-gradient(to right,#43cbff,#9708cc);font-weight: bold;">Facepost <small style="font-size:13px;letter-spacing: 1px;color:linear-gradient(to right,#43cbff,#9708cc);"><i style="color:linear-gradient(to right,#43cbff,#9708cc);">your empire builder</i></small></h2></a>
 
             <ul class="navbar-right" style="padding-right:55px;padding-top: 10px;">
                 <a href="{% url 'login' %}"><li style="list-style:none;"><button class="btn btn-default" style="color:white;background:linear-gradient(to right,#43cbff,#9708cc);border:none;">Log-in</button></li></a>
@@ -217,7 +217,7 @@
         <div class="col-xs-5" style="text-align:center;padding-top: 450px;">
                     <div class="signupctn">
                         <div class="logoctn">
-                            <h3 style="font-size: 40px;font-weight:500;">Start-X</h3>
+                            <h3 style="font-size: 40px;font-weight:500;">Facepost</h3>
                         </div>
                         <form method="POST" action="{% url 'signup' %}">{% csrf_token %}
                             {{ form.as_p }}
