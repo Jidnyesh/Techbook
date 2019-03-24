@@ -17,6 +17,11 @@ class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=100)
     last_name = forms.CharField(max_length=100)
     email = forms.EmailField(max_length=100)
+    def __init__(self, *args, **kwargs):
+        super(SignUpForm, self).__init__(*args, **kwargs)
+
+        for fieldname in ['username', 'password1', 'password2']:
+            self.fields[fieldname].help_text = None
 
     class Meta:
         model = User
@@ -29,6 +34,7 @@ class SignUpForm(UserCreationForm):
             'password2',
 
         )
+
 
 class UserEditForm(UserChangeForm):
     class Meta:
