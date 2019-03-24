@@ -1,0 +1,18 @@
+{% extends 'post/base.html' %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">Posts</a></li>
+  <li class="breadcrumb-item active">Profile</li>
+  <li class="breadcrumb-item active">{{ user.username }}</li>
+  <li class="breadcrumb-item active">edit</li>
+{% endblock %}
+
+{% block content %}
+<form action="" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" class="btn btn-success" value="Done">
+</form>
+
+
+{% endblock %}

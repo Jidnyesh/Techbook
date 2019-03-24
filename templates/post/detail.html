@@ -1,0 +1,52 @@
+{% extends 'post/base.html' %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">Posts</a></li>
+  <li class="breadcrumb-item active">{{ instance.title }}</li>
+{% endblock %}
+{% block content %}
+{% if messages %}
+<ul>
+  {% for message in messages %}
+  <li{% if message.tags %} class="{{ message.tags }}" {% endif %}><h3>{{ message }}</h3></li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<h1>{{ instance.title }}</h1><br>
+{% if instance.image %}
+  <img src="{{ instance.image.url }}" class="img-responsive" height="300" width="400"><br>
+{% endif %}
+<h3>{{ instance.content }}</h3><br>
+<h6>Updated at -- {{ instance.updated }}</h6><br>
+<h6>Created at -- {{ instance.timestamp }}</h6><br>
+<h6>{{ instance.likes.count }} Likes</h6>
+<form action="{% url 'likes' instance.id %}" method="post">{% csrf_token %}
+  {% if user in instance.likes.all %}
+  <input type="submit" class="btn btn-success" Value="Disike">
+  {% else %}
+  <input type="submit" class="btn btn-success" Value="Like">
+  {% endif %}
+
+</form>
+
+
+  <div class="form-group">
+      <label for="id_subject">Comment</label>
+      <input type="text" class="form-control" id="id_subject" name="comment" placeholder="Comments are disabled due to work">
+  </div>
+  <input type="submit" value="Comment">
+
+<br>
+<br>
+
+{% if instance.user == request.user %}
+<form action="{% url 'edit' instance.id %}" method="post">{% csrf_token %}
+  <input type="submit" class="btn btn-success" value="Edit">
+</form>
+<br>
+<form action="{% url 'delete' instance.id %}" method="post">{% csrf_token %}
+  <input type="submit" class="btn btn-success" value="Delete">
+</form>
+{% endif %}
+{% endblock %}

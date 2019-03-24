@@ -1,0 +1,18 @@
+
+
+{% extends 'post/base.html' %}
+
+{% load crispy_forms_tags %}
+      {% csrf_token %}
+    {% crispy form %}
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Create new post</li>
+{% endblock %}
+
+{% block content %}
+<form action="{% url 'create' %}" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form|crispy }}
+  <input type="submit" class="btn btn-success" value="Create new post">
+</form>
+{% endblock %}

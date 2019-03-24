@@ -1,0 +1,16 @@
+{% extends 'post/base.html' %}
+
+{% load static %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Signup</li>
+{% endblock %}
+
+{% block content %}
+<form action="{% url 'signup' %}" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" class="btn btn-success" value="Sign in">
+</form>
+<img src="{% static "images/co.jpg" %}">
+{% endblock %}

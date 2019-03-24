@@ -1,0 +1,28 @@
+{% extends 'post/base.html' %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">Posts</a></li>
+  <li class="breadcrumb-item active">Profile</li>
+  <li class="breadcrumb-item active">{{ user.username }}</li>
+{% endblock %}
+
+{% block content %}
+<h2>Profile</h2>
+User id : {{ user.username }}<br><br>
+
+Name : {{ user.first_name }} {{ user.last_name }}<br><br>
+
+Email-id : {{ user.email }}<br><br>
+<form action="{% url 'edit_profile' %}" method="get">{% csrf_token %}
+  <input type="submit" class="btn btn-success" value="Edit">
+</form>
+<br>
+<form action="{% url 'change_password' %}" method="get">{% csrf_token %}
+  <input type="submit" class="btn btn-success" value="Change password">
+</form>
+
+
+
+
+
+{% endblock %}

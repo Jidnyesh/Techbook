@@ -1,0 +1,70 @@
+{% extends 'post/base.html' %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Posts</li>
+
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+{% if messages %}
+<ul>
+  {% for message in messages %}
+  <li{% if message.tags %} class="{{ message.tags }}" {% endif %}><h3>{{ message }}</h3></li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Post topics</th>
+        <th>Created at</th>
+        <th>Created by</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for inst in instance %}
+        <tr>
+          <td>
+            <a href="{% url 'detail' inst.id %}"><h4>{{ inst.title }}</h4></a><br>
+          </td>
+          <td class="align-middle">{{ inst.timestamp }}<br></td>
+          <td class="align-middle">{{ inst.user.username }}</td>
+          <td>
+            {% if inst.image %}
+              <img src="{{ inst.image.url }}" class="img-responsive" height="50" width="100"><br>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="pagination">
+      <span class="step-links">
+          {% if instance.has_previous %}
+              <a href="?page=1">&laquo; first</a>
+              <a href="?page={{ instance.previous_page_number }}">previous</a>
+          {% endif %}
+
+          <span class="current">
+              Page {{ instance.number }} of {{ instance.paginator.num_pages }}.
+          </span>
+
+          {% if instance.has_next %}
+              <a href="?page={{ instance.next_page_number }}">next</a>
+              <a href="?page={{ instance.paginator.num_pages }}">last &raquo;</a>
+          {% endif %}
+      </span>
+  </div>
+
+
+{% else %}
+<a href="{% url 'login' %}"><h2>You need to login first</h2></a>
+{% endif %}
+
+{% endblock %}
