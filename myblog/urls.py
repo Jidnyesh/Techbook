@@ -22,13 +22,12 @@ from django.views.generic.base import TemplateView
 
 
 urlpatterns = [
-    path('',views.index,name="index"),
     path('admin/', admin.site.urls),
     path('home/',views.home,name = "home"),
     path('home/<int:instance_id>/detail',views.detail,name = "detail"),
     path('home/<int:instance_id>/edit',views.edit,name='edit'),
     path('home/create',views.create,name="create"),
-    path('signup/',views.signup , name = 'signup'),
+    path('/',views.signup , name = 'signup'),
     path('home/',TemplateView.as_view(template_name='home.html'),name='home'),
     path('',include('django.contrib.auth.urls')),
     path('home/<int:instance_id>/detail/delete',views.delete,name = "delete"),

@@ -13,8 +13,7 @@ from django.contrib.auth import update_session_auth_hash
 
 
 # Create your views here.
-def index(request):
-    return render(request,'post/index.html')
+
 
 
 def home(request):
